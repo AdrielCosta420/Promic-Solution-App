@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1056195873226",
+    "project_id": "promic-app",
+    "storage_bucket": "promic-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056195873226:android:1d80b16249d9be20792733",
+        "android_client_info": {
+          "package_name": "adrielcosta.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056195873226-urm4t8d6aea79rnoqv0838l8kk5ek6n1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzRbqSF1LfEpBh07Ae2cC7fUGc8Q21Cqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056195873226-urm4t8d6aea79rnoqv0838l8kk5ek6n1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1056195873226-mmo01naesek2rnf4t3d48katesc6f79u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "adrielcosta.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056195873226:android:cf6a0a46b1157f0c792733",
+        "android_client_info": {
+          "package_name": "br.com.adrielcosta.promic_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056195873226-urm4t8d6aea79rnoqv0838l8kk5ek6n1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzRbqSF1LfEpBh07Ae2cC7fUGc8Q21Cqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056195873226-urm4t8d6aea79rnoqv0838l8kk5ek6n1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1056195873226-mmo01naesek2rnf4t3d48katesc6f79u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "adrielcosta.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
