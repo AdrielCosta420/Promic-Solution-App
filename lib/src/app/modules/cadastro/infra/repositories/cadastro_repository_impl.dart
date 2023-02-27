@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:promic_app/src/app/modules/cadastro/infra/datasource/cadastro_datasource.dart';
 
 import '../../domain/errors/cadastro_errors.dart';
-import '../../domain/repositories/cadastro_repository.dart';
+import '../../domain/infra/repositories/cadastro_repository.dart';
 
 class CadastroRepositoryImpl implements CadastroRepository {
   final CadastroDatasource datasource = Modular.get();

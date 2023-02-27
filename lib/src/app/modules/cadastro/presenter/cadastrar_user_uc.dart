@@ -2,7 +2,7 @@ import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/cadastro/domain/entities/cadastro.dart';
 import 'package:promic_app/src/app/modules/cadastro/domain/errors/cadastro_errors.dart';
-import 'package:promic_app/src/app/modules/cadastro/domain/repositories/cadastro_repository.dart';
+import 'package:promic_app/src/app/modules/cadastro/domain/infra/repositories/cadastro_repository.dart';
 
 abstract class CadastrarUserUc {
   Future<void> call(Cadastro cadastro);
