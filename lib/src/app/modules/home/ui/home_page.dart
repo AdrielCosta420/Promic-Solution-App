@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/ui/divulgar_bolsas_page.dart';
+import 'package:promic_app/src/app/modules/login/ui/login_page.dart';
 import '../widgets/opcao_drawer_custom_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -156,8 +157,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Container(
-          //   child: Image.asset('assets/images/unifametro.png'),
-          ),
+        //   child: Image.asset('assets/images/unifametro.png'),
+        child: ElevatedButton(
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const LoginPage())),
+            child: Text("LOGIN")),
+      ),
     );
   }
 }
