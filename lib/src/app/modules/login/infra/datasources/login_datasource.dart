@@ -3,4 +3,5 @@ import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 
 abstract class LoginDatasource {
   Future<UserCredential> login(Login login);
+  Future<void> loggoff();
 }

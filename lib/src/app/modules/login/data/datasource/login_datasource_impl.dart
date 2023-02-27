@@ -19,4 +19,13 @@ class LoginDatasourceImpl implements LoginDatasource {
       throw LoginErrors(errorMessange: 'Erro desconhecido ao fazer Login');
     }
   }
+
+  @override
+  Future<void> loggoff() async {
+    try {
+      await auth.signOut();
+    } on LoginErrors catch (_) {
+      rethrow;
+    }
+  }
 }
