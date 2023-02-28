@@ -2,19 +2,36 @@ import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:promic_app/src/app/modules/login/domain/errors/login_errors.dart';
 import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginDatasourceImpl implements LoginDatasource {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final supabase = Supabase.instance.client;
 
   @override
-  Future<UserCredential> login(Login login) async {
+  Future<AuthResponse> login(Login login) async {
     try {
-      return await auth.createUserWithEmailAndPassword(
-          email: login.matricula, password: login.password);
-    } on FirebaseAuthException catch (e) {
-      throw LoginErrors(
-          errorMessange: 'Erro ao fazer Login',
-          stackTrace: e.stackTrace.toString());
+      var authResponse = await Supabase.instance.client.auth.signInWithPassword(
+        email: "${login.matricula}@adrielapps.com",
+        password: login.password,
+        // data: {"role": "ALUNO"},
+      );
+
+      print(authResponse.user?.userMetadata?["role"]);
+
+      return authResponse;
+
+      // var signUp = await supabase.auth.signUp(
+      //   email: "adrielsilva_1990@hotmail.com",
+      //   password: 'ai meu deus',
+      //   data: {
+      //     "nome": "Adriel",
+      //     "idade": 45,
+      //     "matricula": "2332131154344",
+      //   },
+      // );
+      // return signUp;
+    } on AuthException catch (e) {
+      throw LoginErrors(errorMessange: e.message);
     } on Exception catch (_) {
       throw LoginErrors(errorMessange: 'Erro desconhecido ao fazer Login');
     }
@@ -23,7 +40,7 @@ class LoginDatasourceImpl implements LoginDatasource {
   @override
   Future<void> loggoff() async {
     try {
-      await auth.signOut();
+      await supabase.auth.signOut();
     } on LoginErrors catch (_) {
       rethrow;
     }

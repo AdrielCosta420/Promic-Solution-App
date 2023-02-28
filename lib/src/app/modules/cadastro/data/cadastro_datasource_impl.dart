@@ -1,28 +1,20 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:promic_app/src/app/common/constants/constants_firebase.dart';
 import 'package:promic_app/src/app/modules/cadastro/domain/entities/cadastro.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:promic_app/src/app/modules/cadastro/domain/errors/cadastro_errors.dart';
 import 'package:promic_app/src/app/modules/cadastro/infra/datasource/cadastro_datasource.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CadastroDatasourceImpl implements CadastroDatasource {
-  FirebaseAuth auth = FirebaseAuth.instance;
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   @override
-  Future<UserCredential> cadastro(Cadastro cadastro) async {
+  Future<AuthResponse> cadastro(Cadastro cadastro) async {
     try {
-      var userCredential = await auth.createUserWithEmailAndPassword(
-          email: cadastro.email, password: cadastro.password);
+      var authResponse = await Supabase.instance.client.auth.signUp(
+        password: cadastro.password,
+        email: cadastro.email,
+        data: {"role": "ALUNO"},
+        );
 
-      if (userCredential.user != null) {
-        await firestore
-            .collection(collectionUser)
-            .doc(userCredential.user!.uid)
-            .set(cadastro.toMap());
-      }
-      return userCredential;
-    } on FirebaseAuthException catch (_) {
+      return authResponse;
+    } on AuthException catch (_) {
       throw CadastroErrors(errorMessage: 'Erro ao fazer Cadastro.');
     } on Exception catch (_) {
       throw CadastroErrors(errorMessage: 'Erro desconhecido ao fazer Cadastro');

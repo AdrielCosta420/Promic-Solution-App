@@ -4,12 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:promic_app/src/app/modules/login/domain/errors/login_errors.dart';
 import 'package:promic_app/src/app/modules/login/domain/infra/repositories/login_repository.dart';
 import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginDatasource datasource = Modular.get();
 
   @override
-  Future<UserCredential> login(Login login) async {
+  Future<AuthResponse> login(Login login) async {
     try {
       return await datasource.login(login);
     } on LoginErrors catch (_) {

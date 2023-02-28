@@ -1,9 +1,7 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../entities/cadastro.dart';
 
 abstract class CadastroRepository {
-  Future<UserCredential> cadastro(Cadastro cadastro);
+  Future<AuthResponse> cadastro(Cadastro cadastro);
   
 }

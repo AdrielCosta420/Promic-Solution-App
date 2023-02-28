@@ -3,21 +3,22 @@ import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 
 class TextFormFieldLoginCustomWidget extends StatelessWidget {
   final String title;
-  
-  const TextFormFieldLoginCustomWidget(
-      {Key? key, required this.title, })
-      : super(key: key);
+  final TextEditingController controller;
+
+  const TextFormFieldLoginCustomWidget({
+    Key? key,
+    required this.title, required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         label: Text(
           title,
           style: TextStyle(color: Colors.black),
         ),
-  
-      
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
         ),
