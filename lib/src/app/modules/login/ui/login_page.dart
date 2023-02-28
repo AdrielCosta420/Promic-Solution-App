@@ -17,17 +17,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final LoginDatasource datasource = LoginDatasourceImpl();
   final LogarUsuarioImplUc logarUsuarioImplUc = Modular.get();
   final formKey = GlobalKey<FormState>();
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
 
-  @override
-  void initState() {
-    datasource.login(Login(matricula: '', password: ''));
-    super.initState();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 Text('Não tem conta?'),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Modular.to.pushNamed('/cadastro');
+                                
+                                  },
                                   child: Text(
                                     'Cadastrar-se',
                                     style: TextStyle(

@@ -19,6 +19,6 @@ class CadastroModule extends Module{
   @override
   
   List<ModularRoute> get routes => [
-    ChildRoute('/cadastro', child: (context, args) => const CadastroPage())
+    ChildRoute('/', child: (context, args) => const CadastroPage())
   ];
 }
