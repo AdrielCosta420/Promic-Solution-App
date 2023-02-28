@@ -8,7 +8,19 @@ class DivulgarBolsasPage extends StatefulWidget {
   State<DivulgarBolsasPage> createState() => _DivulgarBolsasPageState();
 }
 
+final List<String> campusList = [
+  'Campus Aldeota - Fortaleza/CE',
+  'Campus Carneiro Da Cunha - Fortaleza/CE',
+  'Campus Conselheiro Estelita - Fortaleza/CE',
+  'Campus Guilherme Rocha - Fortaleza/CE',
+  'Campus Padre Ibiapina - Fortaleza/CE',
+  'Campus Cascavel - CE',
+  'Campus Maracanaú/CE',
+];
+
 class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
+  String dropdownValue = campusList.first;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +66,35 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                         const SizedBox(
                           height: 15,
                         ),
-                        TextFormFieldCustomWidget(
-                            title: 'Campus',
-                            hintDescription: 'Insira o nome do Campus'),
+                        DropdownButton<String>(
+                          value: dropdownValue,
+                          borderRadius: BorderRadius.circular(20),
+                          alignment: Alignment.topLeft,
+                          dropdownColor: Colors.white,
+                          hint: Text(
+                            'Selecione o Campus',
+                            style: TextStyle(
+                              color: Colors.white38,
+                            ),
+                          ),
+                          items: campusList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              dropdownValue = value!;
+                            });
+                          },
+                        ),
                       ],
                     ),
                   ),

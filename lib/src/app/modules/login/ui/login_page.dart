@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
+import 'package:promic_app/src/app/modules/home/ui/home_page.dart';
 import 'package:promic_app/src/app/modules/login/data/datasource/login_datasource_impl.dart';
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/logar_usuario_uc.dart';
@@ -22,12 +23,9 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         toolbarHeight: 0,
         backgroundColor: colorGreen,
@@ -105,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 12,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,7 +119,6 @@ class _LoginPageState extends State<LoginPage> {
                                 GestureDetector(
                                   onTap: () {
                                     Modular.to.pushNamed('/cadastro');
-                                
                                   },
                                   child: Text(
                                     'Cadastrar-se',
@@ -143,7 +140,10 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
               ),
-            )
+            ),
+            FloatingActionButton(
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => HomePage())))
           ],
         ),
       ),

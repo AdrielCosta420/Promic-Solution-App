@@ -156,13 +156,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Container(
-        //   child: Image.asset('assets/images/unifametro.png'),
-        child: ElevatedButton(
-            onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const LoginPage())),
-            child: Text("LOGIN")),
-      ),
+      body: Container(),
     );
   }
 }

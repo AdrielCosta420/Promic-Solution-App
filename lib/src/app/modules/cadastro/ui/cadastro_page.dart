@@ -18,7 +18,6 @@ class _CadastroPageState extends State<CadastroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         toolbarHeight: 0,
         backgroundColor: colorGreen,

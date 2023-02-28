@@ -10,6 +10,7 @@ class TextFormFieldCustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         label: Text(
           title,
