@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
+import 'package:promic_app/src/app/modules/cadastro/dto/cadastro_dto.dart';
+import 'package:promic_app/src/app/modules/cadastro/presenter/cadastrar_user_uc.dart';
 
 import '../../login/widgets/text_form_field_login_custom_widget.dart';
 
@@ -14,6 +16,12 @@ class CadastroPage extends StatefulWidget {
 
 class _CadastroPageState extends State<CadastroPage> {
   final formKey = GlobalKey<FormState>();
+  final CadastrarUserUc cadastrarUserUc = Modular.get();
+  final TextEditingController controllerNome = TextEditingController();
+  final TextEditingController controllerCpf = TextEditingController();
+  final TextEditingController controllerDataNasc = TextEditingController();
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerSenha = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +64,14 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            controller: controllerNome,
                             title: 'Nome',
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            controller: controllerCpf,
                             title: 'CPF',
                             type: TextInputType.number,
                             hintText: '000.000.000-00',
@@ -70,6 +80,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            controller: controllerDataNasc,
                             title: 'Data de Nascimento',
                             type: TextInputType.datetime,
                             hintText: '00/00/0000',
@@ -78,6 +89,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            controller: controllerEmail,
                             title: 'Email Institucional',
                             type: TextInputType.emailAddress,
                           ),
@@ -85,6 +97,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            controller: controllerSenha,
                             title: 'Senha',
                             suffixIcon: Icon(
                               Icons.visibility,
@@ -102,7 +115,20 @@ class _CadastroPageState extends State<CadastroPage> {
                               backgroundColor: colorGreen,
                               elevation: 3,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              if (formKey.currentState?.validate() ?? false) {
+                                cadastrarUserUc(
+                                  CadastroDto(
+                                    nome: controllerNome.text,
+                                    cpf: controllerCpf.text,
+                                    dataNasc: controllerDataNasc.text,
+                                    cep: controllerSenha.text,
+                                    emailInstitucional: controllerEmail.text,
+                                    password: controllerSenha.text,
+                                  ),
+                                );
+                              }
+                            },
                             child: Text(
                               'CADASTRO',
                               style: TextStyle(

@@ -1,11 +1,13 @@
 class BolsaMonitoria {
   final String titulo;
   final String orientador;
-  final String campus;
+  final String? campus;
+  final String? cargo;
   BolsaMonitoria({
     required this.titulo,
     required this.orientador,
-    required this.campus,
+    this.campus,
+    this.cargo,
   });
 
   Map<String, dynamic> toMap() {
@@ -13,6 +15,7 @@ class BolsaMonitoria {
       'titulo': titulo,
       'orientador': orientador,
       'campus': campus,
+      'cargo': cargo,
     };
   }
 
@@ -21,6 +24,7 @@ class BolsaMonitoria {
       titulo: map['titulo'] as String,
       orientador: map['orientador'] as String,
       campus: map['campus'] as String,
+      cargo: map['cargo'] as String,
     );
   }
 }

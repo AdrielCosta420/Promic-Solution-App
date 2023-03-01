@@ -3,11 +3,15 @@ class CadastroDto {
   final String cpf;
   final String dataNasc;
   final String cep;
+  final String emailInstitucional;
+  final String password;
   CadastroDto({
     required this.nome,
     required this.cpf,
     required this.dataNasc,
     required this.cep,
+    required this.emailInstitucional,
+    required this.password,
   });
 
   Map<String, dynamic> toMap() {
@@ -16,6 +20,8 @@ class CadastroDto {
       'cpf': cpf,
       'dataNasc': dataNasc,
       'cep': cep,
+      'emailInstitucional': emailInstitucional,
+      'password': password,
     };
   }
 
@@ -25,6 +31,8 @@ class CadastroDto {
       cpf: map['cpf'] as String,
       dataNasc: map['dataNasc'] as String,
       cep: map['cep'] as String,
+      emailInstitucional: map['emailInstitucional'] as String,
+      password: map['password'] as String,
     );
   }
 }

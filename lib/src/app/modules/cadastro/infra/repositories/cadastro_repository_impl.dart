@@ -1,7 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:promic_app/src/app/modules/cadastro/domain/entities/cadastro.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:promic_app/src/app/modules/cadastro/dto/cadastro_dto.dart';
 import 'package:promic_app/src/app/modules/cadastro/infra/datasource/cadastro_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -12,9 +10,9 @@ class CadastroRepositoryImpl implements CadastroRepository {
   final CadastroDatasource datasource = Modular.get();
 
   @override
-  Future<AuthResponse> cadastro(Cadastro cadastro) async {
+  Future<AuthResponse> cadastro(CadastroDto cadastroDto) async {
     try {
-  return await datasource.cadastro(cadastro);
+  return await datasource.cadastro(cadastroDto);
 } on AuthException catch (_) {
       throw CadastroErrors(errorMessage: 'Erro ao fazer Cadastro.');
     } on Exception catch (_) {
