@@ -1,4 +1,7 @@
-class Cadastro {
+import 'package:promic_app/src/app/common/value_objects/value_objects.dart';
+import 'package:string_validator/string_validator.dart' as validator;
+
+class Cadastro implements ValueObjects {
   final int id;
   final String nome;
   final String email;
@@ -41,5 +44,18 @@ class Cadastro {
       cpf: map['cpf'] as String,
       cep: map['cep'] as String,
     );
+  }
+
+  @override
+  String? valitador(String? valor) {
+    if (nome.isEmpty ||
+        email.isEmpty || validator.isEmail(email) ||
+        dataNasc.isEmpty ||
+        matricula.isEmpty ||
+        cpf.isEmpty ||
+        cep.isEmpty) {
+      return 'Campo obrigatório, não pode estar vazio';
+    }
+    return null;
   }
 }

@@ -4,8 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 import 'package:promic_app/src/app/modules/cadastro/dto/cadastro_dto.dart';
 import 'package:promic_app/src/app/modules/cadastro/presenter/cadastrar_user_uc.dart';
-
-import '../../login/widgets/text_form_field_login_custom_widget.dart';
+import 'package:string_validator/string_validator.dart' as validate;
+import '../../../common/widgets/text_form_field_login_custom_widget.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
@@ -64,6 +64,12 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Campo obrigatório, não pode ser vazio';
+                              }
+                              return null;
+                            },
                             controller: controllerNome,
                             title: 'Nome',
                           ),
@@ -71,6 +77,12 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty || validate.isNumeric(value)) {
+                                return 'Campo obrigatório, não pode ser vazio';
+                              }
+                              return null;
+                            },
                             controller: controllerCpf,
                             title: 'CPF',
                             type: TextInputType.number,
@@ -80,6 +92,14 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  value.length < 11 ||
+                                  validate.isDate(value)) {
+                                return 'Campo inválido, preencha corretamente';
+                              }
+                              return null;
+                            },
                             controller: controllerDataNasc,
                             title: 'Data de Nascimento',
                             type: TextInputType.datetime,
@@ -89,6 +109,12 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty || validate.isEmail(value)) {
+                                return 'Campo obrigatório, não pode ser vazio';
+                              }
+                              return null;
+                            },
                             controller: controllerEmail,
                             title: 'Email Institucional',
                             type: TextInputType.emailAddress,
@@ -97,6 +123,12 @@ class _CadastroPageState extends State<CadastroPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Campo obrigatório, não pode ser vazio';
+                              }
+                              return null;
+                            },
                             controller: controllerSenha,
                             title: 'Senha',
                             suffixIcon: Icon(

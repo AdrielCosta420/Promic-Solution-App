@@ -1,4 +1,6 @@
-class Login {
+import 'package:promic_app/src/app/common/value_objects/value_objects.dart';
+
+class Login implements ValueObjects {
   final String matricula;
   final String password;
   Login({
@@ -19,4 +21,14 @@ class Login {
       password: map['password'] as String,
     );
   }
+
+  @override
+  String? valitador(String? valor) {
+    if (matricula.isEmpty || password.isEmpty) {
+      return 'Campo obrigatório, não pode está vazio';
+    }
+    return null;
+  }
+
+
 }

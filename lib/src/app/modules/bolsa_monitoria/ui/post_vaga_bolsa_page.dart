@@ -35,6 +35,9 @@ class PostVagaBolsaPage extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 25,
+                      child: ClipOval(
+                        child: Image.asset('assets/images/filelink.png'),
+                      ),
                     ),
                     SizedBox(
                       width: 10,

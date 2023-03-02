@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:promic_app/src/app/modules/login/domain/errors/login_errors.dart';
 import 'package:promic_app/src/app/modules/login/domain/infra/repositories/login_repository.dart';
 import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';

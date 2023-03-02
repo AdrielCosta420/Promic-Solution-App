@@ -8,7 +8,7 @@ import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/logar_usuario_uc.dart';
 import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';
 
-import '../widgets/text_form_field_login_custom_widget.dart';
+import '../../../common/widgets/text_form_field_login_custom_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -63,6 +63,11 @@ class _LoginPageState extends State<LoginPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Campo obrigatório, não pode ser vazio';
+                              }
+                            },
                             controller: controllerEmail,
                             title: 'Matrícula',
                           ),
@@ -70,6 +75,11 @@ class _LoginPageState extends State<LoginPage> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Campo obrigatório, não pode ser vazio';
+                              }
+                            },
                             controller: controllerPassword,
                             title: 'Senha',
                           ),
