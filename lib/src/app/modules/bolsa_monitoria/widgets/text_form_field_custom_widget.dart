@@ -10,6 +10,11 @@ class TextFormFieldCustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Campo obrigatório';
+        }
+      },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         label: Text(

@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class BolsaMonitoria {
   final String titulo;
   final String orientador;
@@ -23,8 +26,12 @@ class BolsaMonitoria {
     return BolsaMonitoria(
       titulo: map['titulo'] as String,
       orientador: map['orientador'] as String,
-      campus: map['campus'] as String,
-      cargo: map['cargo'] as String,
+      campus: map['campus'] != null ? map['campus'] as String : null,
+      cargo: map['cargo'] != null ? map['cargo'] as String : null,
     );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory BolsaMonitoria.fromJson(String source) => BolsaMonitoria.fromMap(json.decode(source) as Map<String, dynamic>);
 }

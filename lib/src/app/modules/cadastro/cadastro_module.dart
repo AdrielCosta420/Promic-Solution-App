@@ -10,7 +10,7 @@ import 'ui/cadastro_page.dart';
 class CadastroModule extends Module{
   @override
   
-  List<Bind<Object>> get binds => [
+  List<Bind> get binds => [
     Bind.lazySingleton<CadastroDatasource>((i) => CadastroDatasourceImpl()),
     Bind.lazySingleton<CadastroRepository>((i) => CadastroRepositoryImpl()),
     Bind.lazySingleton<CadastrarUserUc>((i) => CadastrarUserImplUc())

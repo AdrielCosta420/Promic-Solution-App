@@ -9,7 +9,7 @@ import 'package:promic_app/src/app/modules/login/ui/login_page.dart';
 class LoginModule extends Module{
   @override
   // TODO: implement binds
-  List<Bind<Object>> get binds => [
+  List<Bind> get binds => [
     Bind.lazySingleton<LoginDatasource>((i) => LoginDatasourceImpl()),
     Bind.lazySingleton<LoginRepository>((i) => LoginRepositoryImpl()),
     Bind.lazySingleton<LogarUsuarioUc>((i) => LogarUsuarioImplUc()),

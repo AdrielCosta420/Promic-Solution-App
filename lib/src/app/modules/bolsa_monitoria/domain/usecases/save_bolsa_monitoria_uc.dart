@@ -17,6 +17,7 @@ class SaveBolsaMonitoriaImplUc implements SaveBolsaMonitoriaUc {
     try {
       var postgrestResponse = await repository.save(bolsaMonitoriaDto);
       asuka.AsukaSnackbar.success('Bolsa postada com sucesso').show();
+      
       return postgrestResponse;
     } on BolsaMonitoriaErrors catch (e) {
       asuka.AsukaSnackbar.alert(e.errorMessage).show();

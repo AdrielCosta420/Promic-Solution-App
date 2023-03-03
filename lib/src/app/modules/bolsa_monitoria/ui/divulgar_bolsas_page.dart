@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/usecases/save_bolsa_monitoria_uc.dart';
+import 'package:promic_app/src/app/modules/bolsa_monitoria/dto/bolsa_monitoria_dto.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/ui/post_vaga_bolsa_page.dart';
 import '../widgets/text_form_field_custom_widget.dart';
 
@@ -25,6 +28,14 @@ final List<String> campusList = [
 class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
   String dropdownValue = 'SELECIONE UM CAMPUS';
 
+  final SaveBolsaMonitoriaUc uc = Modular.get();
+  final TextEditingController controllerNomeOrientador =
+      TextEditingController();
+  final TextEditingController controllerCargoOrientador =
+      TextEditingController();
+  final TextEditingController controllerDescricaoBolsa =
+      TextEditingController();
+  final TextEditingController controllerCampusBolsa = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,15 +69,21 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextFormFieldCustomWidget(
-                            title: 'Título do Projeto',
-                            hintDescription:
-                                'Descreva qual a disciplina para monitoria'),
+                            title: 'Orientador',
+                            hintDescription: 'Insira o nome do orientador'),
                         const SizedBox(
                           height: 15,
                         ),
                         TextFormFieldCustomWidget(
-                            title: 'Orientador',
-                            hintDescription: 'Insira o nome do orientador'),
+                            title: 'Cargo',
+                            hintDescription: 'Ex: prof. de Ciências Sociais'),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextFormFieldCustomWidget(
+                            title: 'Descrição da bolsa',
+                            hintDescription:
+                                'Ex: preciso de um aluno para monitoria etc...'),
                         const SizedBox(
                           height: 15,
                         ),
@@ -79,6 +96,7 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                             ),
                           ),
                           child: DropdownButton<String>(
+                            
                             value: dropdownValue,
                             alignment: Alignment.topLeft,
                             dropdownColor: Color.fromARGB(220, 0, 0, 0),
@@ -125,9 +143,13 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                         backgroundColor: Colors.white,
                         elevation: 10,
                       ),
-                      onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const PostVagaBolsaPage())),
+                      onPressed: () {
+                        uc(BolsaMonitoriaDto(
+                          nomeOrientador: controllerNomeOrientador.text,
+                          cargoOrientador: controllerCargoOrientador.text,
+                          descricaoBolsa: controllerCampusBolsa.text,
+                        ));
+                      },
                       child: Text(
                         'CRIAR VAGA',
                         style: TextStyle(

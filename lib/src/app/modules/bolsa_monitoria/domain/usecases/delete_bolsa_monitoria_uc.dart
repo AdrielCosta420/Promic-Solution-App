@@ -4,11 +4,11 @@ import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/errors/bolsa_m
 import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/infra/repositories/bolsa_monitoria_repository.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/dto/bolsa_monitoria_dto.dart';
 
-abstract class DeleteBolsaMentoriaUc {
+abstract class DeleteBolsaMonitoriaUc {
   Future<void> call(BolsaMonitoriaDto bolsaMonitoriaDto);
 }
 
-class DeleteBolsaMentoriaImplUc implements DeleteBolsaMentoriaUc {
+class DeleteBolsaMonitoriaImplUc implements DeleteBolsaMonitoriaUc {
   final BolsaMonitoriaRepository repository = Modular.get();
   @override
   Future<void> call(BolsaMonitoriaDto bolsaMonitoriaDto) async {

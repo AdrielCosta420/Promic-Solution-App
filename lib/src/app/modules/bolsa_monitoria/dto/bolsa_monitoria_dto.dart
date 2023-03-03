@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class BolsaMonitoriaDto {
   final int? id;
   final String? nomeOrientador;
@@ -24,11 +27,15 @@ class BolsaMonitoriaDto {
 
   factory BolsaMonitoriaDto.fromMap(Map<String, dynamic> map) {
     return BolsaMonitoriaDto(
-      id: map['id'] as int,
-      nomeOrientador: map['nomeOrientador'] as String,
-      cargoOrientador: map['cargoOrientador'] as String,
-      descricaoBolsa: map['descricaoBolsa'] as String,
-      campusBolsa: map['campusBolsa'] as String,
+      id: map['id'] != null ? map['id'] as int : null,
+      nomeOrientador: map['nomeOrientador'] != null ? map['nomeOrientador'] as String : null,
+      cargoOrientador: map['cargoOrientador'] != null ? map['cargoOrientador'] as String : null,
+      descricaoBolsa: map['descricaoBolsa'] != null ? map['descricaoBolsa'] as String : null,
+      campusBolsa: map['campusBolsa'] != null ? map['campusBolsa'] as String : null,
     );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory BolsaMonitoriaDto.fromJson(String source) => BolsaMonitoriaDto.fromMap(json.decode(source) as Map<String, dynamic>);
 }

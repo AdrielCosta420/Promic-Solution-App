@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/ui/divulgar_bolsas_page.dart';
 import 'package:promic_app/src/app/modules/login/ui/login_page.dart';
 import '../widgets/opcao_drawer_custom_widget.dart';
@@ -147,9 +148,7 @@ class _HomePageState extends State<HomePage> {
               ),
               OpcaoDrawerCustomWidget(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const DivulgarBolsasPage(),
-                    ));
+                    Modular.to.pushNamed('/bolsa/');
                   },
                   title: 'Divulgar Bolsas'),
             ],

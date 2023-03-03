@@ -1,5 +1,4 @@
 import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/errors/bolsa_monitoria_errors.dart';
-import 'package:supabase/supabase.dart';
 import '../../../common/tables/bolsa_monitoria_table.dart';
 import '../dto/bolsa_monitoria_dto.dart';
 import '../infra/datasources/bolsa_monitoria_datasource.dart';
@@ -11,11 +10,11 @@ class BolsaMonitoriaDatasourceImpl implements BolsaMonitoriaDatasource {
   @override
   Future<PostgrestResponse> save(BolsaMonitoriaDto bolsaMonitoriaDto) async {
     try {
-      return await supabase.client.from(bolsaMonitoriaTable).insert({
-        bolsaMonitoriaDto.nomeOrientador,
-        bolsaMonitoriaDto.cargoOrientador,
-        bolsaMonitoriaDto.descricaoBolsa,
-        bolsaMonitoriaDto.campusBolsa,
+      return await supabase.client.from('"bolsaMonitoria"').insert({
+        'nome_orientador': bolsaMonitoriaDto.nomeOrientador,
+        'cargo_orientador': bolsaMonitoriaDto.cargoOrientador,
+        'descricao_bolsa': bolsaMonitoriaDto.descricaoBolsa,
+        'campus_bolsa': bolsaMonitoriaDto.campusBolsa,
       });
     } on PostgrestException catch (_) {
       throw BolsaMonitoriaErrors(
