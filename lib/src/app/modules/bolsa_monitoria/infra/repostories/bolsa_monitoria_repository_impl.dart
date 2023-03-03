@@ -36,7 +36,7 @@ class BolsaMonitoriaRepositoryImpl implements BolsaMonitoriaRepository {
       BolsaMonitoriaDto bolsaMonitoriaDto) async {
     try {
       return await datasource.update(bolsaMonitoriaDto);
-    } on BolsaMonitoriaRepository catch (e) {
+    } on BolsaMonitoriaRepository catch (_) {
       throw 'Erro ao editar Bolsa de Monitoria';
     }
   }
