@@ -1,29 +1,63 @@
+import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/errors/bolsa_monitoria_errors.dart';
+import 'package:supabase/supabase.dart';
+import '../../../common/tables/bolsa_monitoria_table.dart';
 import '../dto/bolsa_monitoria_dto.dart';
 import '../infra/datasources/bolsa_monitoria_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BolsaMonitoriaDatasourceImpl implements BolsaMonitoriaDatasource {
+  Supabase supabase = Supabase.instance;
 
   @override
-  Future<PostgrestResponse> adicionar(
+  Future<PostgrestResponse> save(BolsaMonitoriaDto bolsaMonitoriaDto) async {
+    try {
+      return await supabase.client.from(bolsaMonitoriaTable).insert({
+        bolsaMonitoriaDto.nomeOrientador,
+        bolsaMonitoriaDto.cargoOrientador,
+        bolsaMonitoriaDto.descricaoBolsa,
+        bolsaMonitoriaDto.campusBolsa,
+      });
+    } on PostgrestException catch (_) {
+      throw BolsaMonitoriaErrors(
+          errorMessage: 'Erro ao adicionar Bolsa de Monitoria');
+    } on Exception catch (_) {
+      throw 'Erro desconhecido ao deletar Bolsa de Monitoria';
+    }
+  }
+
+  @override
+  Future<void> delete(BolsaMonitoriaDto bolsaMonitoriaDto) async {
+    try {
+      await supabase.client.from(bolsaMonitoriaTable).delete();
+    } on PostgrestException catch (_) {
+      throw BolsaMonitoriaErrors(
+          errorMessage: 'Erro ao adicionar Bolsa de Monitoria');
+    } on Exception catch (_) {
+      throw 'Erro desconhecido ao deletar Bolsa de Monitoria';
+    }
+  }
+
+  @override
+  Future<PostgrestFilterBuilder> update(
       BolsaMonitoriaDto bolsaMonitoriaDto) async {
-    return await Supabase.instance.client.from('bolsaMonitoria').insert({
-      bolsaMonitoriaDto.nomeOrientador,
-      bolsaMonitoriaDto.cargoOrientador,
-      bolsaMonitoriaDto.descricaoBolsa,
-      bolsaMonitoriaDto.campusBolsa,
-    });
-  }
+    try {
+      final values = {
+        'nome_orientador': bolsaMonitoriaDto.nomeOrientador,
+        'cargo_orientador': bolsaMonitoriaDto.cargoOrientador,
+        'descricao_bolsa': bolsaMonitoriaDto.descricaoBolsa,
+        'campus_bolsa': bolsaMonitoriaDto.campusBolsa,
+      };
+      final filterBuilder = supabase.client
+          .from(bolsaMonitoriaTable)
+          .update(values)
+          .eq('id', bolsaMonitoriaDto.id);
 
-  @override
-  Future<void> delete(BolsaMonitoriaDto bolsaMonitoriaDto) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<String> save(BolsaMonitoriaDto bolsaMonitoriaDto) {
-    // TODO: implement save
-    throw UnimplementedError();
+      return await filterBuilder;
+    } on PostgrestException catch (_) {
+      throw BolsaMonitoriaErrors(
+          errorMessage: 'Erro ao editar Bolsa de Monitoria');
+    } on Exception catch (_) {
+      throw 'Erro desconhecido ao editar Bolsa de Monitoria';
+    }
   }
 }

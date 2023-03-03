@@ -12,7 +12,7 @@ class LoginDatasourceImpl implements LoginDatasource {
     try {
       var authResponse = await Supabase.instance.client.auth.signInWithPassword(
         //TODO LOGIN COM emailInstituicional
-        email: "${login.matricula}@adrielapps.com",
+        email: "${login.matricula}",
         password: login.password,
         // data: {"role": "ALUNO"},
       );

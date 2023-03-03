@@ -78,7 +78,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
                             validator: (value) {
-                              if (value!.isEmpty || validate.isNumeric(value)) {
+                              if (value!.isEmpty) {
                                 return 'Campo obrigatório, não pode ser vazio';
                               }
                               return null;
@@ -93,9 +93,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
                             validator: (value) {
-                              if (value!.isEmpty ||
-                                  value.length < 11 ||
-                                  validate.isDate(value)) {
+                              if (value!.isEmpty) {
                                 return 'Campo inválido, preencha corretamente';
                               }
                               return null;
@@ -110,7 +108,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           padding: const EdgeInsets.all(15.0),
                           child: TextFormFieldLoginCustomWidget(
                             validator: (value) {
-                              if (value!.isEmpty || validate.isEmail(value)) {
+                              if (value!.isEmpty) {
                                 return 'Campo obrigatório, não pode ser vazio';
                               }
                               return null;
