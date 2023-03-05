@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 class TextFormFieldCustomWidget extends StatelessWidget {
   final String title;
   final String hintDescription;
-  const TextFormFieldCustomWidget(
-      {Key? key, required this.title, required this.hintDescription})
+  TextEditingController? controller;
+   TextFormFieldCustomWidget(
+      {Key? key, required this.title, required this.hintDescription, this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller:controller,
       validator: (value) {
         if (value!.isEmpty) {
           return 'Campo obrigatório';
         }
+         return null;
       },
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(

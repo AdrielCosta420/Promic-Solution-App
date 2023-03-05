@@ -1,10 +1,9 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/usecases/save_bolsa_monitoria_uc.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/dto/bolsa_monitoria_dto.dart';
-import 'package:promic_app/src/app/modules/bolsa_monitoria/ui/post_vaga_bolsa_page.dart';
 import '../widgets/text_form_field_custom_widget.dart';
 
 class DivulgarBolsasPage extends StatefulWidget {
@@ -69,18 +68,21 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextFormFieldCustomWidget(
+                          controller: controllerNomeOrientador,
                             title: 'Orientador',
                             hintDescription: 'Insira o nome do orientador'),
                         const SizedBox(
                           height: 15,
                         ),
                         TextFormFieldCustomWidget(
+                          controller: controllerCargoOrientador,
                             title: 'Cargo',
                             hintDescription: 'Ex: prof. de Ciências Sociais'),
                         const SizedBox(
                           height: 15,
                         ),
                         TextFormFieldCustomWidget(
+                          controller: controllerDescricaoBolsa,
                             title: 'Descrição da bolsa',
                             hintDescription:
                                 'Ex: preciso de um aluno para monitoria etc...'),

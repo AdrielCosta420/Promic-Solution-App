@@ -1,4 +1,4 @@
-import 'package:asuka/asuka.dart' as asuka;
+//import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/errors/bolsa_monitoria_errors.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/infra/repositories/bolsa_monitoria_repository.dart';
@@ -16,13 +16,13 @@ class SaveBolsaMonitoriaImplUc implements SaveBolsaMonitoriaUc {
   Future<PostgrestResponse> call(BolsaMonitoriaDto bolsaMonitoriaDto) async {
     try {
       var postgrestResponse = await repository.save(bolsaMonitoriaDto);
-      asuka.AsukaSnackbar.success('Bolsa postada com sucesso').show();
+    //  asuka.AsukaSnackbar.success('Bolsa postada com sucesso').show();
       
       return postgrestResponse;
-    } on BolsaMonitoriaErrors catch (e) {
-      asuka.AsukaSnackbar.alert(e.errorMessage).show();
-    } on Exception catch (e) {
-      asuka.AsukaSnackbar.alert(e.toString()).show();
+    } on BolsaMonitoriaErrors catch (_) {
+     // asuka.AsukaSnackbar.alert(e.errorMessage).show();
+    } on Exception catch (_) {
+    //  asuka.AsukaSnackbar.alert(e.toString()).show();
     }
     throw '';
 

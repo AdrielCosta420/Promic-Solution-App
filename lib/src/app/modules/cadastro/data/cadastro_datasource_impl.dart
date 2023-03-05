@@ -13,16 +13,16 @@ class CadastroDatasourceImpl implements CadastroDatasource {
       var authResponse = await Supabase.instance.client.auth.signUp(
         password: cadastroDto.password,
         email: cadastroDto.emailInstitucional,
-        data: {"role": "ALUNO"},
+      //  data: {"role": "ALUNO"},
       );
 
 
-      var usuario = authResponse.user;
+     // var usuario = authResponse.user;
 
-      var ultId = await Supabase.instance.client.from('usuario').select('id').order('id',ascending: false);
+  //    var ultId = await Supabase.instance.client.from('usuario').select('id').order('id',ascending: false);
 
       
-      Cadastro cadastro = Cadastro(
+     /* Cadastro cadastro = Cadastro(
         id: 0,
         nome: cadastroDto.nome,
         email: cadastroDto.emailInstitucional,
@@ -31,7 +31,7 @@ class CadastroDatasourceImpl implements CadastroDatasource {
         matricula: '',
         cpf: cadastroDto.cpf,
         cep: cadastroDto.cep,
-      );
+      );*/
 
       
 

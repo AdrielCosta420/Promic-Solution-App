@@ -3,10 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 import 'package:promic_app/src/app/modules/home/ui/home_page.dart';
-import 'package:promic_app/src/app/modules/login/data/datasource/login_datasource_impl.dart';
+
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/logar_usuario_uc.dart';
-import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';
 
 import '../../../common/widgets/text_form_field_login_custom_widget.dart';
 
@@ -67,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório, não pode ser vazio';
                               }
+                              return null;
                             },
                             controller: controllerEmail,
                             title: 'Matrícula',
@@ -79,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                               if (value!.isEmpty) {
                                 return 'Campo obrigatório, não pode ser vazio';
                               }
+                               return null;
                             },
                             controller: controllerPassword,
                             title: 'Senha',
