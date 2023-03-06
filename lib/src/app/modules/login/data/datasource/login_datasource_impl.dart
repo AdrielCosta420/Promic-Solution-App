@@ -24,12 +24,12 @@ class LoginDatasourceImpl implements LoginDatasource {
         var role = user?.userMetadata?["role"];
 
         // Definindo o papel do usuário
-        var client = Supabase.instance.client;
-        var response = await client.from("auth.users").update({
-            "role": role
-        }).match({"id": user?.id});
+    //    var client = Supabase.instance.client;
+    //    var response = await client.from("auth.users").update({
+     //       "role": role
+     //   }).match({"id": user?.id});
 
-        String papel = authResponse.user?.userMetadata?["tipo"] == 'aluno' ? 'aluno' : 'professor';
+       // String papel = authResponse.user?.userMetadata?["tipo"] == 'aluno' ? 'aluno' : 'professor';
        // await Supabase.instance.client.auth.setRole(papel, authResponse.user!.id);
 
       return authResponse;

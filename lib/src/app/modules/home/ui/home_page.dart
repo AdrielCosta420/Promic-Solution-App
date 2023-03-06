@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:promic_app/src/app/modules/bolsa_monitoria/ui/divulgar_bolsas_page.dart';
-import 'package:promic_app/src/app/modules/login/ui/login_page.dart';
+import 'package:promic_app/src/app/common/constants/constants_colors.dart';
+import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/usecases/get_all_bolsa_monitoria_uc.dart';
+import 'package:promic_app/src/app/modules/bolsa_monitoria/dto/bolsa_monitoria_dto.dart';
+import 'package:promic_app/src/app/modules/bolsa_monitoria/widgets/post_vaga_bolsa_custom_widget.dart';
 import '../widgets/opcao_drawer_custom_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +14,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GetAllBolsaMonitoriaUc getlAll = Modular.get();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getlAll.call();
+  }
+
+  List<BolsaMonitoriaDto> lista = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,11 +32,19 @@ class _HomePageState extends State<HomePage> {
         child: AppBar(
           iconTheme: IconThemeData(color: Color(0xff19603d)),
           elevation: 0,
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.refresh,
+                  size: 30,
+                )),
+          ],
           title: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Image.asset(
               'assets/images/unifametro.png',
-              cacheHeight: 80,
+              cacheHeight: 70,
             ),
           ),
           centerTitle: true,
@@ -155,7 +175,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Container(),
+      body: ListView.separated(
+        separatorBuilder: (context, index) =>
+            Divider(color: colorGreen, thickness: 0.8),
+        itemCount: lista.length,
+        itemBuilder: (context, index) =>
+            PostVagaBolsaCustomWidget(bolsa: lista[index]),
+      ),
     );
   }
 }

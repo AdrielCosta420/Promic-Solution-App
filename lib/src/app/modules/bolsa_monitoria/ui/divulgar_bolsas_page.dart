@@ -149,7 +149,7 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                         uc(BolsaMonitoriaDto(
                           nomeOrientador: controllerNomeOrientador.text,
                           cargoOrientador: controllerCargoOrientador.text,
-                          descricaoBolsa: controllerCampusBolsa.text,
+                          descricaoBolsa: controllerDescricaoBolsa.text,
                         ));
                       },
                       child: Text(

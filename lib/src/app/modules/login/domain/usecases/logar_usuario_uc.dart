@@ -1,9 +1,8 @@
-//import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../errors/login_errors.dart';
 import '../infra/repositories/login_repository.dart';
-
+import 'package:asuka/asuka.dart' as asuka;
 import '../entities/login.dart';
 
 abstract class LogarUsuarioUc {
@@ -21,11 +20,11 @@ class LogarUsuarioImplUc implements LogarUsuarioUc {
         Modular.to.pushNamed('/home', arguments: userCredential);
       }
       return userCredential;
-    } on LoginErrors catch (_) {
-   //   asuka.AsukaSnackbar.alert(e.errorMessange);
+    } on LoginErrors catch (e) {
+    asuka.AsukaSnackbar.alert(e.errorMessange);
       rethrow;
     } on Exception catch (_) {
-    //  asuka.AsukaSnackbar.alert('Erro ao fazer Login');
+    asuka.AsukaSnackbar.alert('Erro ao fazer Login');
       rethrow;
     }
   }

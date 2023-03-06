@@ -1,1 +1,1 @@
-const bolsaMonitoriaTable = 'bolsaMonitoria';
+const bolsaMonitoriaTable = 'BOLSAMONITORIA';

@@ -17,21 +17,20 @@ class BolsaMonitoriaDto {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'nomeOrientador': nomeOrientador,
-      'cargoOrientador': cargoOrientador,
-      'descricaoBolsa': descricaoBolsa,
-      'campusBolsa': campusBolsa,
+      'nome_orientador': nomeOrientador,
+      'cargo_orientador': cargoOrientador,
+      'descricao_bolsa': descricaoBolsa,
+      'campus_bolsa': campusBolsa,
     };
   }
 
   factory BolsaMonitoriaDto.fromMap(Map<String, dynamic> map) {
     return BolsaMonitoriaDto(
       id: map['id'] != null ? map['id'] as int : null,
-      nomeOrientador: map['nomeOrientador'] != null ? map['nomeOrientador'] as String : null,
-      cargoOrientador: map['cargoOrientador'] != null ? map['cargoOrientador'] as String : null,
-      descricaoBolsa: map['descricaoBolsa'] != null ? map['descricaoBolsa'] as String : null,
-      campusBolsa: map['campusBolsa'] != null ? map['campusBolsa'] as String : null,
+      nomeOrientador: map['nome_orientador'] != null ? map['nome_orientador'] as String : null,
+      cargoOrientador: map['cargo_orientador'] != null ? map['cargo_orientador'] as String : null,
+      descricaoBolsa: map['descricao_bolsa'] != null ? map['descricao_bolsa'] as String : null,
+      campusBolsa: map['campus_bolsa'] != null ? map['campus_bolsa'] as String : null,
     );
   }
 

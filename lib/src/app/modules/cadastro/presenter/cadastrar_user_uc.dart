@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/cadastro/domain/errors/cadastro_errors.dart';
 import 'package:promic_app/src/app/modules/cadastro/domain/infra/repositories/cadastro_repository.dart';
 import 'package:promic_app/src/app/modules/cadastro/dto/cadastro_dto.dart';
+import 'package:asuka/asuka.dart' as asuka;
 
 abstract class CadastrarUserUc {
   Future<void> call(CadastroDto cadastroDto);
@@ -18,8 +19,8 @@ class CadastrarUserImplUc implements CadastrarUserUc {
       if (userCredential.user != null) {
         Modular.to.pushNamed('/home/', arguments: userCredential);
       }
-    } on CadastroErrors catch (_) {
-     // asuka.AsukaSnackbar.alert(e.errorMessage).show();
+    } on CadastroErrors catch (e) {
+      asuka.AsukaSnackbar.alert(e.errorMessage).show();
     }
   }
 }
