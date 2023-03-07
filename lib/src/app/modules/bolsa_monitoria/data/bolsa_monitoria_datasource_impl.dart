@@ -21,12 +21,13 @@ class BolsaMonitoriaDatasourceImpl implements BolsaMonitoriaDatasource {
 
   @override
   Future<List<Map<String, dynamic>>> getAll() async {
-    return await supabase.client
-        .from(bolsaMonitoriaTable)
-        .select()
-        .then((value) => value as List<Map<String, dynamic>>)
-        .onError((error, stackTrace) =>
-            throw BolsaMonitoriaErrors(errorMessage: "Erro ao buscar bolsas"));
+    try {
+      PostgrestList list =
+          await supabase.client.from(bolsaMonitoriaTable).select();
+      return list;
+    } on Exception catch (_) {
+      throw BolsaMonitoriaErrors(errorMessage: "Erro ao buscar bolsas");
+    }
   }
 
   @override
