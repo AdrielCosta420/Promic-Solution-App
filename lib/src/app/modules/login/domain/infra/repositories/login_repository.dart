@@ -3,4 +3,5 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class LoginRepository {
   Future<AuthResponse> login(Login login);
+  Future<void> loggoff();
 }

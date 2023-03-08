@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class TextFormFieldCustomWidget extends StatelessWidget {
   final String title;
   final String hintDescription;
+  final String? Function(String?)? validator;
   TextEditingController? controller;
-   TextFormFieldCustomWidget(
-      {Key? key, required this.title, required this.hintDescription, this.controller})
+  TextFormFieldCustomWidget(
+      {Key? key,
+      required this.title,
+      required this.hintDescription,
+      this.controller, this.validator})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller:controller,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Campo obrigatório';
-        }
-         return null;
-      },
+      controller: controller,
+      validator: validator,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         label: Text(

@@ -18,4 +18,15 @@ class LoginRepositoryImpl implements LoginRepository {
       throw 'Erro desconhecido ao fazer Login';
     }
   }
+
+  @override
+  Future<void> loggoff() async {
+    try {
+      await datasource.loggoff();
+    } on LoginErrors catch (_) {
+      throw 'Erro ao sair do aplicativo';
+    } on Exception catch (_) {
+      throw 'Erro desconhecido ao sair do aplicativo';
+    }
+  }
 }

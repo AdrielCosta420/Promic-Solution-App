@@ -7,6 +7,7 @@ import '../entities/login.dart';
 
 abstract class LogarUsuarioUc {
   Future<AuthResponse> call(Login login);
+  
 }
 
 class LogarUsuarioImplUc implements LogarUsuarioUc {
@@ -21,10 +22,10 @@ class LogarUsuarioImplUc implements LogarUsuarioUc {
       }
       return userCredential;
     } on LoginErrors catch (e) {
-    asuka.AsukaSnackbar.alert(e.errorMessange);
+      asuka.AsukaSnackbar.alert(e.errorMessange);
       rethrow;
     } on Exception catch (_) {
-    asuka.AsukaSnackbar.alert('Erro ao fazer Login');
+      asuka.AsukaSnackbar.alert('Erro ao fazer Login');
       rethrow;
     }
   }

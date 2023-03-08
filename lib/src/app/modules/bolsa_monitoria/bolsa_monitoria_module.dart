@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'controllers/bolsa_monitoria_store.dart';
 import 'data/bolsa_monitoria_datasource_impl.dart';
 import 'domain/infra/repositories/bolsa_monitoria_repository.dart';
 import 'domain/usecases/delete_bolsa_monitoria_uc.dart';
@@ -16,8 +17,9 @@ class BolsaMonitoriaModule extends Module {
         Bind.lazySingleton<BolsaMonitoriaRepository>((i) => BolsaMonitoriaRepositoryImpl(i.get()), export: true),
         Bind.lazySingleton<SaveBolsaMonitoriaUc>((i) => SaveBolsaMonitoriaImplUc()),
         Bind.lazySingleton<UpdateBolsaMonitoriaUc>((i) => UpdateBolsaMonitoriaImplUc()),
-        Bind.lazySingleton<DeleteBolsaMonitoriaUc>((i) => DeleteBolsaMonitoriaImplUc()),
-        Bind.lazySingleton<GetAllBolsaMonitoriaUc>((i) => GetAllBolsaMonitoriaImplUc(i.get()),export: true)
+        Bind.lazySingleton<DeleteBolsaMonitoriaUc>((i) => DeleteBolsaMonitoriaImplUc(), export: true),
+        Bind.lazySingleton<GetAllBolsaMonitoriaUc>((i) => GetAllBolsaMonitoriaImplUc(i.get()),export: true),
+        Bind.lazySingleton((i) => BolsaMonitoriaStore())
       ];
 
   @override

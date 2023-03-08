@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import '../constants/constants_colors.dart';
 
 class TextFormFieldLoginCustomWidget extends StatelessWidget {
@@ -7,16 +9,18 @@ class TextFormFieldLoginCustomWidget extends StatelessWidget {
   final TextInputType? type;
   final String? hintText;
   final Widget? suffixIcon;
+  final bool obscureTex;
   String? Function(String?)? validator;
-   TextFormFieldLoginCustomWidget({
+  TextFormFieldLoginCustomWidget({
+    Key? key,
     required this.title,
     this.controller,
     this.type,
     this.hintText,
     this.suffixIcon,
+    this.obscureTex = false,
     required this.validator,
-  });
-
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,7 @@ class TextFormFieldLoginCustomWidget extends StatelessWidget {
       controller: controller,
       keyboardType: type,
       cursorColor: colorGreen,
+      obscureText: obscureTex,
       decoration: InputDecoration(
         label: Text(
           title,
