@@ -9,7 +9,7 @@ import '../dto/bolsa_monitoria_dto.dart';
 class PostVagaBolsaCustomWidget extends StatelessWidget {
   const PostVagaBolsaCustomWidget({
     Key? key,
-    required this.bolsa,
+    required this.bolsa, 
   }) : super(key: key);
 
   final BolsaMonitoriaDto bolsa;
