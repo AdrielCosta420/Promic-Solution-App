@@ -1,28 +1,35 @@
-import '../domain/entities/cadastro.dart';
-import '../domain/errors/cadastro_errors.dart';
-import '../dto/cadastro_dto.dart';
-import '../infra/datasource/cadastro_datasource.dart';
+import '../../domain/errors/cadastro_errors.dart';
+import '../../dto/cadastro_dto.dart';
+import '../../infra/datasource/cadastro_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:bcrypt/bcrypt.dart';
 
 class CadastroDatasourceImpl implements CadastroDatasource {
+  Supabase supabase = Supabase.instance;
+
   @override
   Future<AuthResponse> cadastro(CadastroDto cadastroDto) async {
     try {
-
       var authResponse = await Supabase.instance.client.auth.signUp(
         password: cadastroDto.password,
         email: cadastroDto.emailInstitucional,
-      //  data: {"role": "ALUNO"},
+        //  data: {"role": "ALUNO"},
       );
 
-
-     // var usuario = authResponse.user;
-
-  //    var ultId = await Supabase.instance.client.from('usuario').select('id').order('id',ascending: false);
-
       
-     /* Cadastro cadastro = Cadastro(
+
+
+
+
+
+
+
+
+
+      // var usuario = authResponse.user;
+
+      //    var ultId = await Supabase.instance.client.from('usuario').select('id').order('id',ascending: false);
+
+      /* Cadastro cadastro = Cadastro(
         id: 0,
         nome: cadastroDto.nome,
         email: cadastroDto.emailInstitucional,
@@ -32,8 +39,6 @@ class CadastroDatasourceImpl implements CadastroDatasource {
         cpf: cadastroDto.cpf,
         cep: cadastroDto.cep,
       );*/
-
-      
 
       return authResponse;
     } on AuthException catch (_) {

@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/home/controllers/home_store.dart';
 import 'package:promic_app/src/app/modules/home/ui/fab_teste_page.dart';
-import 'package:promic_app/src/app/modules/home/ui/profile_user_page.dart';
+import 'package:promic_app/src/app/modules/profile/ui/profile_user_page.dart';
 import 'package:promic_app/src/app/modules/home/widgets/drawer_custom_widget.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/loggof_usuario_uc.dart';
 import '../../../common/constants/constants_colors.dart';

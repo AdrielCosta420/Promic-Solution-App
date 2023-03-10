@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'data/cadastro_datasource_impl.dart';
+import 'data/datasource/cadastro_datasource_impl.dart';
 import 'domain/infra/repositories/cadastro_repository.dart';
 import 'infra/datasource/cadastro_datasource.dart';
 import 'infra/repositories/cadastro_repository_impl.dart';

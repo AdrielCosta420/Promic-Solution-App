@@ -36,6 +36,7 @@ dependencies:
   bcrypt: ^1.1.3
   string_validator: ^1.0.0
   asuka: ^2.0.2
+  image_picker: ^0.8.7
 
 
 flutter_native_splash:
