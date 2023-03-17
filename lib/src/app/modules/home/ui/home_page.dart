@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:promic_app/src/app/modules/home/controllers/home_store.dart';
-import 'package:promic_app/src/app/modules/home/ui/fab_teste_page.dart';
-import 'package:promic_app/src/app/modules/profile/ui/profile_user_page.dart';
-import 'package:promic_app/src/app/modules/home/widgets/drawer_custom_widget.dart';
-import 'package:promic_app/src/app/modules/login/domain/usecases/loggof_usuario_uc.dart';
+import '../controllers/home_store.dart';
+import 'fab_teste_page.dart';
+import '../widgets/drawer_custom_widget.dart';
 import '../../../common/constants/constants_colors.dart';
-import '../../bolsa_monitoria/domain/usecases/delete_bolsa_monitoria_uc.dart';
 import '../../bolsa_monitoria/domain/usecases/get_all_bolsa_monitoria_uc.dart';
 import '../../bolsa_monitoria/dto/bolsa_monitoria_dto.dart';
 import '../../bolsa_monitoria/widgets/post_vaga_bolsa_custom_widget.dart';
-import '../widgets/opcao_drawer_custom_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,17 +49,7 @@ class _HomePageState extends State<HomePage> {
             child: AppBar(
               iconTheme: IconThemeData(color: Color(0xff19603d)),
               elevation: 0,
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    getlAll.call();
-                  },
-                  icon: Icon(
-                    Icons.refresh,
-                    size: 30,
-                  ),
-                ),
-              ],
+
               title: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Image.asset(

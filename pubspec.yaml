@@ -37,6 +37,8 @@ dependencies:
   string_validator: ^1.0.0
   asuka: ^2.0.2
   image_picker: ^0.8.7
+  cached_network_image: ^3.2.3
+ 
 
 
 flutter_native_splash:

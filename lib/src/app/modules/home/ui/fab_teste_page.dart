@@ -68,7 +68,7 @@ class _FabTestePageState extends State<FabTestePage>
           ),
           FloatingActionButton(
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const PerfilUsuarioPage())),
+                builder: (context) =>  PerfilUsuarioPage())),
             child: Icon(
               Icons.person,
               color: Colors.white,

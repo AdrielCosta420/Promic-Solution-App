@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
-import 'package:promic_app/src/app/modules/home/ui/home_page.dart';
 
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/logar_usuario_uc.dart';
+import 'package:promic_app/src/app/modules/login/domain/usecases/verificar_usuario_uc.dart';
 import 'package:promic_app/src/app/modules/login/presenter/controllers/login_store.dart';
 
 import '../../../common/widgets/text_form_field_login_custom_widget.dart';
@@ -24,6 +24,16 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
 
+
+
+  @override
+  void initState() {
+    super.initState();
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+    Modular.get<VerificarUsuarioUc>().didChangeDependencies();
+  });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,31 +115,32 @@ class _LoginPageState extends State<LoginPage> {
                           width: 360,
                           height: 40,
                           child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: colorGreen,
-                                elevation: 3,
-                              ),
-                              onPressed: () {
-                                if (formKey.currentState?.validate() ?? false) {
-                                  logarUsuarioImplUc(
-                                    Login(
-                                        matricula: controllerEmail.text,
-                                        password: controllerPassword.text),
-                                  );
-                                }
-                              },
-                              child: !store.isLoadingLogin
-                                  ? Text(
-                                      'LOGIN',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 0.5,
-                                      ),
-                                    )
-                                  : CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 3,
-                                    )),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: colorGreen,
+                              elevation: 3,
+                            ),
+                            onPressed: () {
+                              if (formKey.currentState?.validate() ?? false) {
+                                logarUsuarioImplUc(
+                                  Login(
+                                      matricula: controllerEmail.text,
+                                      password: controllerPassword.text),
+                                );
+                              }
+                            },
+                            child: !store.isLoadingLogin
+                                ? Text(
+                                    'LOGIN',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  )
+                                : CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 3,
+                                  ),
+                          ),
                         ),
                         SizedBox(
                           height: 12,
@@ -170,9 +181,6 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             ),
-            FloatingActionButton(
-                onPressed: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => HomePage())))
           ],
         ),
       ),

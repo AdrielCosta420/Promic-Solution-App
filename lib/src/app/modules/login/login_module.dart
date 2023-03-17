@@ -3,6 +3,7 @@ import 'package:promic_app/src/app/modules/login/data/datasource/login_datasourc
 import 'package:promic_app/src/app/modules/login/domain/infra/repositories/login_repository.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/logar_usuario_uc.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/loggof_usuario_uc.dart';
+import 'package:promic_app/src/app/modules/login/domain/usecases/verificar_usuario_uc.dart';
 import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';
 import 'package:promic_app/src/app/modules/login/infra/repositories/login_repository_impl.dart';
 import 'package:promic_app/src/app/modules/login/presenter/controllers/login_store.dart';
@@ -16,6 +17,7 @@ class LoginModule extends Module{
     Bind.lazySingleton<LoginRepository>((i) => LoginRepositoryImpl()),
     Bind.lazySingleton<LogarUsuarioUc>((i) => LogarUsuarioImplUc()),
     Bind.lazySingleton<LoggofUsuarioUc>((i) => LoggofUsuarioImplUc(), export: true),
+    Bind.lazySingleton<VerificarUsuarioUc>((i) => VerificarUsuarioImplUc()),
     Bind.lazySingleton((i) => LoginStore())
   ];
 

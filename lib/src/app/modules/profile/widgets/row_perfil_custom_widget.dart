@@ -11,7 +11,8 @@ class RowPerfilCustomWidget extends StatelessWidget {
   String titulo;
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return 
+    Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
