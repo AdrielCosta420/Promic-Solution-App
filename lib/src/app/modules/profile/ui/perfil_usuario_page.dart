@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
@@ -19,57 +21,57 @@ class PerfilUsuarioPage extends StatefulWidget {
 Supabase supabase = Supabase.instance;
 String? imageUrl;
 
+Uint8List? foto;
+bool informacoesAlteradas = false;
+
 class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
-  /* final picker = ImagePicker();
-
-  buscarImageGaleria() async {
-    final file = await picker.pickImage(source: ImageSource.gallery);
-
-    if (file != null) {
-      setState(() => arquivo = File(file.path));
-    }
-  }*/
 
   Future<void> pickAndUploadImage() async {
+    String userID = supabase.client.auth.currentUser!.id;
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       final bytes = await pickedFile.readAsBytes();
-      final fileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
+
+      setState(() {
+        foto = bytes;
+        informacoesAlteradas = true;
+      });
+
+      final fileName = '$userID-${DateTime.now().millisecondsSinceEpoch}.jpg';
       final response = await supabase.client.storage
           .from('profiles-users/fotos')
-          .uploadBinary(fileName, bytes, fileOptions: FileOptions(contentType: pickedFile.mimeType),);
-      if (response.isNotEmpty) {
-        setState(() {
-          imageUrl = response;
-        });
-      }
+          .uploadBinary(
+            fileName,
+            bytes,
+            fileOptions: FileOptions(contentType: pickedFile.mimeType),
+          );
+      await supabase.client
+          .from("usuario")
+          .update({'foto': response}).filter("uuid", "eq", userID)
+          .then((_) => asuka.AsukaSnackbar.success("Foto Atualizada").show())
+          .onError(
+            (error, stackTrace) =>
+                asuka.AsukaSnackbar.alert("Erro ao atualizar Foto"),
+          );
     }
   }
 
-  /* DESSA FORMA ELE N CONSEGUE LER O ARQUIVO
-  final bytes = await pickedFile.readAsBytes();
-final tempFile = File.fromRawPath(bytes);
-final fileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
-final response = await supabase.client.storage
-    .from('profiles-users/fotos')
-    .upload(fileName, tempFile);*/
-
-  /* CONSIGO ENVIAR P STORAGE, MAS N CONSIGO VER A IMAGEM
   
-   final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      final bytes = await pickedFile.readAsBytes();
-      final path = await bytes.toSet();
-      final fileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
-      final response = await supabase.client.storage
-          .from('profiles-users/fotos')
-          .uploadBinary(fileName, bytes);
-      if (response.isNotEmpty) {
-        setState(() {
-          imageUrl = response;
-          */
+
+  Future<void> recuperarFoto() async {
+    final usuario =
+        await supabase.client.from("usuario").select("foto").gte("id", "value");
+
+    //TODO
+    final response =
+        await supabase.client.storage.from('profiles-users/fotos').download("");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +81,17 @@ final response = await supabase.client.storage
         title: const Text('Conta'),
         backgroundColor: colorGreen,
       ),
+      floatingActionButton: informacoesAlteradas
+          ? FloatingActionButton(
+              onPressed: () {
+                print(supabase.client.auth.currentUser!.id);
+                setState(() {
+                  informacoesAlteradas = false;
+                });
+              },
+              child: Icon(Icons.save),
+            )
+          : null,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40),
@@ -94,14 +107,10 @@ final response = await supabase.client.storage
                     child: SizedBox.fromSize(
                       size: const Size.fromRadius(48), // Image radius
                       child: CircleAvatar(
-                        backgroundImage:
-                            imageUrl != null ? NetworkImage(imageUrl!) : null,
+                        backgroundImage: foto != null
+                            ? MemoryImage(foto!)
+                            : Image.asset("assets/images/avatar1.jpg").image,
                         backgroundColor: Colors.grey.shade200,
-                        child: Icon(
-                          Icons.person,
-                          size: 30,
-                          color: colorGreen,
-                        ),
                       ),
                     ),
                   ),

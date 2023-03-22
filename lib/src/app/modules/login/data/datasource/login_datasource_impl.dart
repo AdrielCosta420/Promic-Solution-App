@@ -1,7 +1,6 @@
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:promic_app/src/app/modules/login/domain/errors/login_errors.dart';
-import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasource.dart';
+import '../../infra/datasources/login_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginDatasourceImpl implements LoginDatasource {
@@ -31,6 +30,10 @@ class LoginDatasourceImpl implements LoginDatasource {
 
        // String papel = authResponse.user?.userMetadata?["tipo"] == 'aluno' ? 'aluno' : 'professor';
        // await Supabase.instance.client.auth.setRole(papel, authResponse.user!.id);
+
+
+
+
 
       return authResponse;
 

@@ -13,11 +13,11 @@ class LoginModule extends Module{
   @override
   // TODO: implement binds
   List<Bind> get binds => [
-    Bind.lazySingleton<LoginDatasource>((i) => LoginDatasourceImpl()),
-    Bind.lazySingleton<LoginRepository>((i) => LoginRepositoryImpl()),
-    Bind.lazySingleton<LogarUsuarioUc>((i) => LogarUsuarioImplUc()),
+    Bind.lazySingleton<LoginDatasource>((i) => LoginDatasourceImpl(), export: true),
+    Bind.lazySingleton<LoginRepository>((i) => LoginRepositoryImpl(datasource: i.get()), export: true),
+    Bind.lazySingleton<LogarUsuarioUc>((i) => LogarUsuarioImplUc(repository: i.get()), export: true),
     Bind.lazySingleton<LoggofUsuarioUc>((i) => LoggofUsuarioImplUc(), export: true),
-    Bind.lazySingleton<VerificarUsuarioUc>((i) => VerificarUsuarioImplUc()),
+    Bind.lazySingleton<VerificarUsuarioUc>((i) => VerificarUsuarioImplUc(), export:  true),
     Bind.lazySingleton((i) => LoginStore())
   ];
 

@@ -2,6 +2,7 @@ import '../../domain/errors/cadastro_errors.dart';
 import '../../dto/cadastro_dto.dart';
 import '../../infra/datasource/cadastro_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:asuka/asuka.dart' as asuka;
 
 class CadastroDatasourceImpl implements CadastroDatasource {
   Supabase supabase = Supabase.instance;
@@ -15,15 +16,8 @@ class CadastroDatasourceImpl implements CadastroDatasource {
         //  data: {"role": "ALUNO"},
       );
 
-      
-
-
-
-
-
-
-
-
+      CadastroDto cadastro = cadastroDto.copyWith(uuid: authResponse.user!.id);
+      supabase.client.from("usuario").insert(cadastro.toMap()).select();
 
       // var usuario = authResponse.user;
 

@@ -3,7 +3,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class VerificarUsuarioUc {
   void didChangeDependencies();
-
   Future<void> redirect();
 }
 

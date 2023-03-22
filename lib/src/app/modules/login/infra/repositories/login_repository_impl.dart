@@ -1,4 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:promic_app/src/app/modules/login/domain/errors/login_errors.dart';
 import 'package:promic_app/src/app/modules/login/domain/infra/repositories/login_repository.dart';
@@ -6,7 +5,9 @@ import 'package:promic_app/src/app/modules/login/infra/datasources/login_datasou
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
-  final LoginDatasource datasource = Modular.get();
+  final LoginDatasource datasource;
+
+  LoginRepositoryImpl({required this.datasource});
 
   @override
   Future<AuthResponse> login(Login login) async {

@@ -11,7 +11,9 @@ abstract class LogarUsuarioUc {
 }
 
 class LogarUsuarioImplUc implements LogarUsuarioUc {
-  final LoginRepository repository = Modular.get();
+  final LoginRepository repository;
+
+  LogarUsuarioImplUc({required this.repository});
 
   @override
   Future<AuthResponse> call(Login login) async {

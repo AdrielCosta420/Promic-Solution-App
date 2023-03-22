@@ -1,1 +1,1 @@
-const collectionUser = 'USUARIOS';
+const collectionUser = 'USUARIO';

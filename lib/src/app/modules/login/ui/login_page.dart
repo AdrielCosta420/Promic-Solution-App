@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final LogarUsuarioImplUc logarUsuarioImplUc = Modular.get();
+  final LogarUsuarioUc logarUsuarioUc = Modular.get();
   final LoginStore store = Modular.get();
   final formKey = GlobalKey<FormState>();
   final TextEditingController controllerEmail = TextEditingController();
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () {
                               if (formKey.currentState?.validate() ?? false) {
-                                logarUsuarioImplUc(
+                                logarUsuarioUc(
                                   Login(
                                       matricula: controllerEmail.text,
                                       password: controllerPassword.text),
