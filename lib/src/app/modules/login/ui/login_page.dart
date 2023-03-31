@@ -71,42 +71,36 @@ class _LoginPageState extends State<LoginPage> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório, não pode ser vazio';
-                              }
-                              return null;
-                            },
-                            controller: controllerEmail,
-                            title: 'Matrícula',
-                          ),
+                        TextFormFieldLoginCustomWidget(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório, não pode ser vazio';
+                            }
+                            return null;
+                          },
+                          controller: controllerEmail,
+                          title: 'Matrícula',
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
-                            obscureTex: store.visiblePassword.value,
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                store.visiblePasswordChange();
-                              },
-                              icon: Icon(
-                                store.visiblePassword.value
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility_outlined,
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório, não pode ser vazio';
-                              }
-                              return null;
+                        TextFormFieldLoginCustomWidget(
+                          obscureTex: store.visiblePassword.value,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              store.visiblePasswordChange();
                             },
-                            controller: controllerPassword,
-                            title: 'Senha',
+                            icon: Icon(
+                              store.visiblePassword.value
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                            ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório, não pode ser vazio';
+                            }
+                            return null;
+                          },
+                          controller: controllerPassword,
+                          title: 'Senha',
                         ),
                         SizedBox(
                           height: 15,

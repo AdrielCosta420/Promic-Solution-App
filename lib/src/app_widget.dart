@@ -28,6 +28,7 @@ class _AppWidgetState extends State<AppWidget> {
       routeInformationParser: Modular.routeInformationParser,
       theme: themeData,
     );
+    
   }
 
   Future<ThemeData> themeUserPreference() async {

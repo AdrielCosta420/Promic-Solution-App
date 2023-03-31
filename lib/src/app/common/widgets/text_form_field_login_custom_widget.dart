@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../constants/constants_colors.dart';
 
@@ -10,6 +11,7 @@ class TextFormFieldLoginCustomWidget extends StatelessWidget {
   final String? hintText;
   final Widget? suffixIcon;
   final bool obscureTex;
+  List<TextInputFormatter>? inputFormatters;
   String? Function(String?)? validator;
   TextFormFieldLoginCustomWidget({
     Key? key,
@@ -19,44 +21,49 @@ class TextFormFieldLoginCustomWidget extends StatelessWidget {
     this.hintText,
     this.suffixIcon,
     this.obscureTex = false,
+    this.inputFormatters,
     required this.validator,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: validator,
-      controller: controller,
-      keyboardType: type,
-      cursorColor: colorGreen,
-      obscureText: obscureTex,
-      decoration: InputDecoration(
-        label: Text(
-          title,
-          style: TextStyle(color: Colors.black),
-        ),
-        hintText: hintText,
-        suffixIcon: suffixIcon,
-        suffixIconColor: colorGreen,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(
-            color: colorGreen,
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: TextFormField(
+        validator: validator,
+        controller: controller,
+        keyboardType: type,
+        cursorColor: colorGreen,
+        obscureText: obscureTex,
+        inputFormatters: inputFormatters,
+        decoration: InputDecoration(
+          label: Text(
+            title,
+            style: TextStyle(color: Colors.black),
           ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(
-            color: Colors.red,
+          hintText: hintText,
+          suffixIcon: suffixIcon,
+          suffixIconColor: colorGreen,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(
-            color: colorGreen,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              color: colorGreen,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              color: colorGreen,
+            ),
           ),
         ),
       ),

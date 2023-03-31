@@ -4,8 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 import 'package:promic_app/src/app/modules/cadastro/dto/cadastro_dto.dart';
 import 'package:promic_app/src/app/modules/cadastro/presenter/cadastrar_user_uc.dart';
+import 'package:promic_app/src/app/modules/cadastro/presenter/controllers/cadastro_store.dart';
 import 'package:string_validator/string_validator.dart' as validate;
 import '../../../common/widgets/text_form_field_login_custom_widget.dart';
+import 'package:date_time_picker/date_time_picker.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
@@ -22,6 +25,10 @@ class _CadastroPageState extends State<CadastroPage> {
   final TextEditingController controllerDataNasc = TextEditingController();
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerSenha = TextEditingController();
+  final CadastroStore store = Modular.get();
+
+  final maskCpf = MaskTextInputFormatter(
+      mask: '###.###.###-##', filter: {'#': RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
@@ -61,77 +68,122 @@ class _CadastroPageState extends State<CadastroPage> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório, não pode ser vazio';
-                              }
-                              return null;
-                            },
-                            controller: controllerNome,
-                            title: 'Nome',
-                          ),
+                        TextFormFieldLoginCustomWidget(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório, não pode ser vazio';
+                            }
+                            return null;
+                          },
+                          controller: controllerNome,
+                          title: 'Nome',
+                        ),
+                        TextFormFieldLoginCustomWidget(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório, não pode ser vazio';
+                            }
+                            if (controllerCpf.text
+                                    .replaceAll('.', '')
+                                    .replaceAll('-', '')
+                                    .length !=
+                                11) {
+                              return 'CPF inválido';
+                            }
+                            return null;
+                          },
+                          controller: controllerCpf,
+                          title: 'CPF',
+                          type: TextInputType.number,
+                          inputFormatters: [maskCpf],
+                          hintText: '000.000.000-00',
                         ),
                         Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório, não pode ser vazio';
-                              }
-                              return null;
-                            },
-                            controller: controllerCpf,
-                            title: 'CPF',
-                            type: TextInputType.number,
-                            hintText: '000.000.000-00',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
+                          child: DateTimePicker(
+                            //  initialValue: DateTime.now().toString(),
+                            enableInteractiveSelection: true,
+                            enableSuggestions: true,
+                            cursorColor: colorGreen,
+                            firstDate: DateTime(1930),
+                            lastDate: DateTime(2100),
+                            dateMask: 'd MMM yyyy',
+                            icon: Icon(Icons.date_range_outlined,
+                                color: colorGreen),
+                            calendarTitle: 'Data de Nascimento',
+                            timeLabelText: 'Data de Nascimento',
+                            controller: controllerDataNasc,
+                            dateHintText: 'Data de Nascimento',
+                            onChanged: (value) {},
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Campo inválido, preencha corretamente';
                               }
                               return null;
                             },
-                            controller: controllerDataNasc,
-                            title: 'Data de Nascimento',
-                            type: TextInputType.datetime,
-                            hintText: '00/00/0000',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório, não pode ser vazio';
-                              }
-                              return null;
-                            },
-                            controller: controllerEmail,
-                            title: 'Email Institucional',
-                            type: TextInputType.emailAddress,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextFormFieldLoginCustomWidget(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Campo obrigatório, não pode ser vazio';
-                              }
-                              return null;
-                            },
-                            controller: controllerSenha,
-                            title: 'Senha',
-                            suffixIcon: Icon(
-                              Icons.visibility,
+
+                            decoration: InputDecoration(
+                              label: Text(
+                                'Data de Nascimento',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  color: colorGreen,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  color: colorGreen,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  color: colorGreen,
+                                ),
+                              ),
                             ),
+                          ),
+                        ),
+
+                        /* TextFormFieldLoginCustomWidget(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo inválido, preencha corretamente';
+                            }
+                            return null;
+                          },
+                          controller: controllerDataNasc,
+                          title: 'Data de Nascimento',
+                          type: TextInputType.datetime,
+                          hintText: '00/00/0000',
+                        ),*/
+                        TextFormFieldLoginCustomWidget(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório, não pode ser vazio';
+                            }
+                            return null;
+                          },
+                          controller: controllerEmail,
+                          title: 'Email Institucional',
+                          type: TextInputType.emailAddress,
+                        ),
+                        TextFormFieldLoginCustomWidget(
+                          obscureTex: store.visiblePassword,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Campo obrigatório, não pode ser vazio';
+                            }
+                            return null;
+                          },
+                          controller: controllerSenha,
+                          title: 'Senha',
+                          suffixIcon: Icon(
+                            Icons.visibility,
                           ),
                         ),
                         SizedBox(

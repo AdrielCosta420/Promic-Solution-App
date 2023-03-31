@@ -1,5 +1,5 @@
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
-import 'package:promic_app/src/app/modules/login/domain/errors/login_errors.dart';
+import '../../domain/errors/login_errors.dart';
 import '../../infra/datasources/login_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

@@ -25,7 +25,6 @@ Uint8List? foto;
 bool informacoesAlteradas = false;
 
 class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
-
   Future<void> pickAndUploadImage() async {
     String userID = supabase.client.auth.currentUser!.id;
     final pickedFile =
@@ -48,7 +47,8 @@ class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
           );
       await supabase.client
           .from("usuario")
-          .update({'foto': response}).filter("uuid", "eq", userID)
+          .update({'foto': response})
+          .filter("uuid", "eq", userID)
           .then((_) => asuka.AsukaSnackbar.success("Foto Atualizada").show())
           .onError(
             (error, stackTrace) =>
@@ -56,8 +56,6 @@ class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
           );
     }
   }
-
-  
 
   Future<void> recuperarFoto() async {
     final usuario =
@@ -71,6 +69,7 @@ class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
   @override
   void initState() {
     super.initState();
+
   }
 
   @override
