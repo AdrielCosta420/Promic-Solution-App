@@ -9,7 +9,7 @@ import '../dto/bolsa_monitoria_dto.dart';
 class PostVagaBolsaCustomWidget extends StatelessWidget {
   const PostVagaBolsaCustomWidget({
     Key? key,
-    required this.bolsa, 
+    required this.bolsa,
   }) : super(key: key);
 
   final BolsaMonitoriaDto bolsa;
@@ -17,10 +17,12 @@ class PostVagaBolsaCustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width,
       height: 250,
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(7),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

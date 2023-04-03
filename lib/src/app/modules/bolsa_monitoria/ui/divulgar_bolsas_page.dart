@@ -82,8 +82,7 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                               },
                               controller: controllerNomeOrientador,
                               title: 'Orientador',
-                              hintDescription:
-                                  'Insira o nome do orientador'),
+                              hintDescription: 'Insira o nome do orientador'),
                           const SizedBox(
                             height: 15,
                           ),
@@ -96,8 +95,7 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                               },
                               controller: controllerCargoOrientador,
                               title: 'Cargo',
-                              hintDescription:
-                                  'Ex: prof. de Ciências Sociais'),
+                              hintDescription: 'Ex: prof. de Ciências Sociais'),
                           const SizedBox(
                             height: 15,
                           ),
@@ -134,9 +132,8 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                               ),
                               iconSize: 30,
                               underline: SizedBox(),
-                              items: campusList
-                                  .map<DropdownMenuItem<String>>(
-                                      (String value) {
+                              items: campusList.map<DropdownMenuItem<String>>(
+                                  (String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Padding(
@@ -170,37 +167,35 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
                     width: 350,
                     height: 40,
                     child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          elevation: 10,
-                        ),
-                        onPressed: () {
-                          if (formKey.currentState?.validate() ?? false) {
-                            uc(
-                              BolsaMonitoriaDto(
-                                nomeOrientador:
-                                    controllerNomeOrientador.text,
-                                cargoOrientador:
-                                    controllerCargoOrientador.text,
-                                descricaoBolsa:
-                                    controllerDescricaoBolsa.text,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        elevation: 10,
+                      ),
+                      onPressed: () {
+                        if (formKey.currentState?.validate() ?? false) {
+                          uc(
+                            BolsaMonitoriaDto(
+                              nomeOrientador: controllerNomeOrientador.text,
+                              cargoOrientador: controllerCargoOrientador.text,
+                              descricaoBolsa: controllerDescricaoBolsa.text,
+                            ),
+                          );
+                          Modular.to.pushNamed('/home/');
+                        }
+                      },
+                      child: !store.isLoadingBolsa
+                          ? Text(
+                              'CRIAR VAGA',
+                              style: TextStyle(
+                                color: Color(0xff19603d),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
                               ),
-                            );
-                            Modular.to.pushNamed('/home/');
-                          }
-                        },
-                        child: !store.isLoadingBolsa
-                            ? Text(
-                                'CRIAR VAGA',
-                                style: TextStyle(
-                                  color: Color(0xff19603d),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
-                                ),
-                              )
-                            : CircularProgressIndicator(
-                                color: colorGreen,
-                              )),
+                            )
+                          : CircularProgressIndicator(
+                              color: colorGreen,
+                            ),
+                    ),
                   ),
                 ],
               ),
@@ -211,6 +206,15 @@ class _DivulgarBolsasPageState extends State<DivulgarBolsasPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.arrow_back,
+          color: colorGreen,
+        ),
+        backgroundColor: Colors.white,
+        onPressed: () => Modular.to.pop(),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
     );
   }
 }

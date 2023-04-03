@@ -39,7 +39,7 @@ class BolsaMonitoriaDatasourceImpl implements BolsaMonitoriaDatasource {
         .single()
         .then((value) => value)
         .onError((error, stackTrace) =>
-            throw BolsaMonitoriaErrors(errorMessage: "Erro ao buscar bolsas"));
+            throw BolsaMonitoriaErrors(errorMessage: "Erro ao salvar bolsas"));
   }
 
   @override

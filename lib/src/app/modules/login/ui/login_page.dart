@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
-
 import 'package:promic_app/src/app/modules/login/domain/entities/login.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/logar_usuario_uc.dart';
 import 'package:promic_app/src/app/modules/login/domain/usecases/verificar_usuario_uc.dart';

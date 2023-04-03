@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 class IniciacaoCientifica {
+  final int? id;
   final String cursoIc;
   final String tituloIc;
   final String orientadorIc;
   final String alunosAprovadosIc;
 
   IniciacaoCientifica({
+    this.id,
     required this.cursoIc,
     required this.tituloIc,
     required this.orientadorIc,
@@ -15,6 +17,7 @@ class IniciacaoCientifica {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'cursoIc': cursoIc,
       'tituloIc': tituloIc,
       'orientadorIc': orientadorIc,
@@ -24,6 +27,7 @@ class IniciacaoCientifica {
 
   factory IniciacaoCientifica.fromMap(Map<String, dynamic> map) {
     return IniciacaoCientifica(
+      id: map['id'] as int,
       cursoIc: map['cursoIc'] as String,
       tituloIc: map['tituloIc'] as String,
       orientadorIc: map['orientadorIc'] as String,

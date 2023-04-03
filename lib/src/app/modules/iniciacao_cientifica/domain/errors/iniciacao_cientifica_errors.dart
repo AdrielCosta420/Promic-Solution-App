@@ -1,5 +1,5 @@
 class IniciacaoCientificaErrors {
   final String errorMessage;
 
-  IniciacaoCientificaErrors(this.errorMessage);
+  IniciacaoCientificaErrors({required this.errorMessage});
 }

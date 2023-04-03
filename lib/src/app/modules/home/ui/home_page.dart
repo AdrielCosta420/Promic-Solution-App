@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
     return Observer(
       builder: (_) {
         return Scaffold(
+          backgroundColor: Colors.white12,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(60.0),
             child: AppBar(
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 )
               : ListView.separated(
                   separatorBuilder: (context, index) =>
-                      Divider(color: colorGreen, thickness: 0.8),
+                      Divider(color: colorGreen, thickness: 0.1),
                   itemCount: lista.length,
                   itemBuilder: (context, index) {
                     BolsaMonitoriaDto bolsa = lista[index];

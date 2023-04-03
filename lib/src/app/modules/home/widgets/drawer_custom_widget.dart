@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:promic_app/src/app/modules/iniciacao_cientifica/ui/iniciacao_cientifica_page.dart';
 import 'package:promic_app/src/app/modules/profile/ui/perfil_usuario_page.dart';
 
 import '../../../common/constants/constants_colors.dart';
@@ -27,111 +28,31 @@ class DrawerCustomWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/logpromic.png'),
+              Container(
+                width: 230,
+                height: 120,
+                color: colorGreen,
+                child: Image.asset('assets/images/logouni.png'),
+              ),
+              const Divider(),
               const SizedBox(
                 height: 30,
               ),
-              OpcaoDrawerCustomWidget(
-                  onTap: () {}, title: 'Solicitar Bolsa de Mentoria'),
-              // const SizedBox(height: 23),
-              /* Container(
-                      height: 2,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xff19603d).withOpacity(0.2),
-                            Color(0xff19603d).withOpacity(0.4),
-                            Color(0xff19603d).withOpacity(0.6),
-                          ],
-                          stops: const [0.0, 0.5, 1.0],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                      ),
-                      child: const Divider(
-                        color: Colors.transparent,
-                        height: 2,
-                        thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                      ),
-                    ),*/
 
               OpcaoDrawerCustomWidget(
-                  onTap: () {}, title: 'Acompanhar Solicitação'),
-              // const SizedBox(height: 23),
-              /* Container(
-                      height: 2,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xff19603d).withOpacity(0.1),
-                            Color(0xff19603d).withOpacity(0.3),
-                            Color(0xff19603d).withOpacity(0.6),
-                          ],
-                          stops: const [0.0, 0.5, 1.0],
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
-                        ),
-                      ),
-                      child: const Divider(
-                        color: Colors.transparent,
-                        height: 1,
-                        thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                      ),
-                    ),*/
-
-              OpcaoDrawerCustomWidget(
-                  onTap: () {}, title: 'Iniciação Científica'),
-              /*  Flow(
-                        clipBehavior: Clip.none,
-                        delegate: FabDelegateVertical(),
-                        children: [
-                          FloatingActionButton(
-                              onPressed: () {}, child: const Icon(Icons.settings)),
-                          FloatingActionButton(
-                              onPressed: () {},
-                              child: const Icon(Icons.person_4_outlined)),
-                          FloatingActionButton(
-                              onPressed: () {}, child: const Icon(Icons.logout)),
-                        ],
-                      ),*/
-              // const SizedBox(height: 23),
-              /*Container(
-                      height: 2,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xff19603d).withOpacity(0.1),
-                            Color(0xff19603d).withOpacity(0.3),
-                            Color(0xff19603d).withOpacity(0.6),
-                          ],
-                          stops: const [0.0, 0.5, 1.0],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                      ),
-                      child: const Divider(
-                        color: Colors.transparent,
-                        height: 1,
-                        thickness: 1,
-                        indent: 0,
-                        endIndent: 0,
-                      ),
-                    ),*/
-
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const IniciacaoCientificaPage())),
+                  title: 'Iniciação Científica'),
               OpcaoDrawerCustomWidget(
                   onTap: () {
                     Modular.to.pushNamed('/bolsa/');
                   },
-                  title: 'Divulgar Bolsas'),
+                  title: 'Bolsa Monitoria'),
               OpcaoDrawerCustomWidget(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const PerfilUsuarioPage(),
                       )),
-                  title: 'Profile'),
+                  title: 'Configurações'),
               Spacer(),
               GestureDetector(
                 onTap: () {

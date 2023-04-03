@@ -13,17 +13,21 @@ class OpcaoDrawerCustomWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 23),
       child: GestureDetector(
         onTap: onTap,
-        child: Row(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
+        child: Container(
+          height: 30,
+          color: Color.fromARGB(255, 214, 243, 229),
+          child: Row(
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

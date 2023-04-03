@@ -22,7 +22,7 @@ class TextFormFieldLoginCustomWidget extends StatelessWidget {
     this.suffixIcon,
     this.obscureTex = false,
     this.inputFormatters,
-    required this.validator,
+     this.validator,
   }) : super(key: key);
 
   @override
