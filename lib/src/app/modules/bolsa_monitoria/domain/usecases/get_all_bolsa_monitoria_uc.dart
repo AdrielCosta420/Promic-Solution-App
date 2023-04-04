@@ -2,7 +2,6 @@ import 'package:asuka/asuka.dart' as asuka;
 import 'package:promic_app/src/app/modules/bolsa_monitoria/dto/bolsa_monitoria_dto.dart';
 import 'package:promic_app/src/app/modules/bolsa_monitoria/infra/repostories/bolsa_monitoria_repository_impl.dart';
 import '../errors/bolsa_monitoria_errors.dart';
-import '../infra/repositories/bolsa_monitoria_repository.dart';
 
 abstract class GetAllBolsaMonitoriaUc {
   Future<List<BolsaMonitoriaDto>> call();

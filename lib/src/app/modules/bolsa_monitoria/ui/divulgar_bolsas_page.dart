@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 import '../domain/usecases/save_bolsa_monitoria_uc.dart';

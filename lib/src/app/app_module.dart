@@ -4,12 +4,15 @@ import 'package:promic_app/src/app/modules/cadastro/cadastro_module.dart';
 import 'package:promic_app/src/app/modules/home/home_module.dart';
 import 'package:promic_app/src/app/modules/login/login_module.dart';
 
+import 'modules/iniciacao_cientifica/iniciacao_cientifica_module.dart';
+
 class AppModule extends Module {
   @override
   List<Module> get imports => [
         LoginModule(),
         BolsaMonitoriaModule(),
         HomeModule(),
+        IniciacaoCientificaModule(),
       ];
 
   @override
@@ -18,5 +21,6 @@ class AppModule extends Module {
         ModuleRoute('/home', module: HomeModule()),
         ModuleRoute('/cadastro', module: CadastroModule()),
         ModuleRoute('/bolsa', module: BolsaMonitoriaModule()),
+        ModuleRoute('/ic', module: IniciacaoCientificaModule()),
       ];
 }

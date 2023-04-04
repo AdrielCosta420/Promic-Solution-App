@@ -16,7 +16,6 @@ class DeleteBolsaMonitoriaImplUc implements DeleteBolsaMonitoriaUc {
     try {
    await repository.delete(bolsaMonitoriaDto);
     asuka.AsukaSnackbar.success('Bolsa deletada com sucesso').show();
-  
     } on BolsaMonitoriaErrors catch (_) {
     asuka.AsukaSnackbar.alert('Erro ao deletar Bolsa').show();
     } on Exception catch (e) {

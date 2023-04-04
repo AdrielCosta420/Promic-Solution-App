@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/material.dart';
-
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
-import 'package:promic_app/src/app/modules/bolsa_monitoria/domain/entities/bolsa_monitoria.dart';
-
 import '../dto/bolsa_monitoria_dto.dart';
 
 class PostVagaBolsaCustomWidget extends StatelessWidget {
@@ -74,7 +72,10 @@ class PostVagaBolsaCustomWidget extends StatelessWidget {
                 backgroundColor: colorGreen,
                 elevation: 5,
               ),
-              onPressed: () {},
+              onPressed: () {
+                asuka.AsukaSnackbar.success('Candidatura enviada com sucesso!')
+                    .show();
+              },
               child: Text(
                 'Candidate-se',
                 style:
