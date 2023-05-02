@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -69,7 +70,6 @@ class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -115,9 +115,9 @@ class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
                   ),
                 ),
               ),
-              RowPerfilCustomWidget(titulo: ''),
-              RowPerfilCustomWidget(titulo: 'Email@email.com'),
-              RowPerfilCustomWidget(titulo: 'Data de Nascimento:'),
+              RowPerfilCustomWidget(
+                  titulo: supabase.client.auth.currentUser!.email ?? ''),
+
               //   RowPerfilCustomWidget(titulo: 'disciplina'),
               //   RowPerfilCustomWidget(titulo: 'matriculado: ads'),
             ],

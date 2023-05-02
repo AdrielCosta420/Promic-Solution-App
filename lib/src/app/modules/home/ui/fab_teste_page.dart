@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 import 'package:promic_app/src/app/modules/home/delegates/fab_delegate_vertical.dart';
+import 'package:promic_app/src/app/modules/iniciacao_cientifica/ui/feed_ic_page.dart';
 import 'package:promic_app/src/app/modules/profile/ui/perfil_usuario_page.dart';
+
+import '../../iniciacao_cientifica/ui/iniciacao_cientifica_page.dart';
 
 class FabTestePage extends StatefulWidget {
   const FabTestePage({Key? key}) : super(key: key);
@@ -59,16 +62,17 @@ class _FabTestePageState extends State<FabTestePage>
             backgroundColor: colorGreen.withOpacity(0.8),
           ),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IniciacaoCientificaPage())),
             child: Icon(
-              Icons.settings,
+              Icons.note_alt_outlined,
               color: Colors.white,
+              size: 27,
             ),
             backgroundColor: colorGreen.withOpacity(0.8),
           ),
           FloatingActionButton(
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>  PerfilUsuarioPage())),
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => PerfilUsuarioPage())),
             child: Icon(
               Icons.person,
               color: Colors.white,

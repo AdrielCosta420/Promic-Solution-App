@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:promic_app/src/app/modules/home/ui/home_page.dart';
+import 'package:promic_app/src/app/modules/iniciacao_cientifica/ui/feed_ic_page.dart';
 import 'package:promic_app/src/app/modules/iniciacao_cientifica/ui/iniciacao_cientifica_page.dart';
 import 'package:promic_app/src/app/modules/profile/ui/perfil_usuario_page.dart';
 
@@ -41,12 +43,12 @@ class DrawerCustomWidget extends StatelessWidget {
 
               OpcaoDrawerCustomWidget(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const IniciacaoCientificaPage())),
+                      builder: (context) => const FeedIcPage())),
                   title: 'Iniciação Científica'),
               OpcaoDrawerCustomWidget(
-                  onTap: () {
-                    Modular.to.pushNamed('/bolsa/');
-                  },
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      )),
                   title: 'Bolsa Monitoria'),
               OpcaoDrawerCustomWidget(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(

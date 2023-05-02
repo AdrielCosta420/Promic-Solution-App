@@ -4,8 +4,7 @@ import 'package:promic_app/src/app/common/constants/constants_colors.dart';
 import 'package:promic_app/src/app/common/widgets/text_form_field_login_custom_widget.dart';
 import 'package:promic_app/src/app/modules/iniciacao_cientifica/domain/entities/iniciacao_cientifica.dart';
 import 'package:promic_app/src/app/modules/iniciacao_cientifica/presenter/usecases/save_iniciacao_cientifica_uc.dart';
-
-import '../widgets/post_ic_custom_widget.dart';
+import 'package:promic_app/src/app/modules/iniciacao_cientifica/ui/feed_ic_page.dart';
 
 class IniciacaoCientificaPage extends StatefulWidget {
   const IniciacaoCientificaPage({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class IniciacaoCientificaPage extends StatefulWidget {
 }
 
 SaveIniciacaoCientificaUc uc = Modular.get();
-final formKey = GlobalKey<FormState>();
+//final formKey = GlobalKey<FormState>();
 TextEditingController controllerCurso = TextEditingController();
 TextEditingController controllerTitulo = TextEditingController();
 TextEditingController controllerOrientador = TextEditingController();
@@ -46,7 +45,7 @@ class _IniciacaoCientificaPageState extends State<IniciacaoCientificaPage> {
         child: Center(
           child: Container(
             child: Form(
-              key: formKey,
+              //    key: formKey,
               child: Column(
                 children: [
                   Image.asset('assets/images/logouni.png'),
@@ -78,16 +77,17 @@ class _IniciacaoCientificaPageState extends State<IniciacaoCientificaPage> {
                         backgroundColor: colorGreen,
                       ),
                       onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          uc.call(
-                            IniciacaoCientifica(
-                                cursoIc: controllerCurso.text,
-                                tituloIc: controllerTitulo.text,
-                                orientadorIc: controllerOrientador.text,
-                                alunosAprovadosIc: controllerEstudantes.text),
-                          );
-                        }
-                        Modular.to.pushNamed('/ic/');
+                        uc.call(
+                          IniciacaoCientifica(
+                              cursoIc: controllerCurso.text,
+                              tituloIc: controllerTitulo.text,
+                              orientadorIc: controllerOrientador.text,
+                              alunosAprovadosIc: controllerEstudantes.text),
+                        );
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const FeedIcPage()));
+                        // Modular.to.pushNamed('/ic/');
+                        clearField();
                       },
                       child: Text(
                         'POSTAR',
@@ -103,5 +103,12 @@ class _IniciacaoCientificaPageState extends State<IniciacaoCientificaPage> {
         ),
       ),
     );
+  }
+
+  void clearField() {
+    controllerCurso.clear();
+    controllerTitulo.clear();
+    controllerOrientador.clear();
+    controllerEstudantes.clear();
   }
 }

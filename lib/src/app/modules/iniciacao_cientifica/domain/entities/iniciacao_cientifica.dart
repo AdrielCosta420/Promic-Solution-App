@@ -17,7 +17,6 @@ class IniciacaoCientifica {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'cursoIc': cursoIc,
       'tituloIc': tituloIc,
       'orientadorIc': orientadorIc,

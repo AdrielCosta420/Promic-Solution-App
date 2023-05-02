@@ -21,7 +21,7 @@ class IniciacaoCientificaModule extends Module{
     Bind.lazySingleton<SaveIniciacaoCientificaUc>((i) => SaveIniciacaoCientificaImplUc(), export: true),
     Bind.lazySingleton<UpdateIniciacaoCientificaUc>((i) => UpdateIniciacaoCientificaImplUc(), export: true),
     Bind.lazySingleton<DeleteIniciacaoCientificaUc>((i) => DeleteIniciacaoCientificaImplUc(), export: true),
-    Bind.lazySingleton((i) => IniciacaoCientificaStore()),
+    Bind.lazySingleton((i) => IniciacaoCientificaStore(), export: true),
   ];
 
   @override

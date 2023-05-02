@@ -25,12 +25,17 @@ class _FeedIcPageState extends State<FeedIcPage> {
 
   Future<void> getAllIc() async {
     var list = await getAll.call();
+
+    setState(() {
+      lista = list;
+      store.isLoadingChange(false);
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    store.isLoadingChange(false);
+    getAllIc();
   }
 
   @override

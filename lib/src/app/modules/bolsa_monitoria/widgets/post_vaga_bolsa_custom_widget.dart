@@ -33,7 +33,8 @@ class PostVagaBolsaCustomWidget extends StatelessWidget {
                 CircleAvatar(
                   radius: 25,
                   child: ClipOval(
-                    child: Image.asset('assets/images/filelink.png'),
+                    child: Image.asset('assets/images/teacher.png',
+                        fit: BoxFit.fitWidth),
                   ),
                 ),
                 SizedBox(
